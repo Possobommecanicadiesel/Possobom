@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Possobom Mecânica Diesel | Caminhões, Vans e Utilitários em São José/SC</title>
+<meta name="description" content="Possobom Mecânica Diesel — manutenção e diagnóstico especializado para caminhões, vans e utilitários em São José/SC. Atendimento na oficina e no local. WhatsApp (48) 99647-2068.">
+<meta name="theme-color" content="#081428">
+<meta property="og:title" content="Possobom Mecânica Diesel">
+<meta property="og:description" content="Mecânica diesel para caminhões, vans e utilitários. Rua Maria Oliveira, 350 — Serraria, São José/SC.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23081428'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Arial Black' font-weight='900' text-anchor='middle' fill='%23FF6A13'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050d1c;
+  --navy:#081428;
+  --navy2:#0d2142;
+  --blue:#1553b8;
+  --blue2:#2f7bff;
+  --orange:#ff6a13;
+  --orange2:#ff9a4d;
+  --steel:#9fb2cf;
+  --white:#f4f7fc;
+  --line:rgba(159,178,207,.14);
+  --radius:18px;
+  --display:'Barlow Condensed',Impact,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:var(--body);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+::selection{background:var(--orange);color:var(--ink)}
+.container{width:min(1200px,92%);margin:auto}
+
+/* ---------- PRELOADER ---------- */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:999;display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#loader.hide{opacity:0;visibility:hidden}
+#loader .gear-load{width:90px;height:90px;animation:spin 1.4s linear infinite}
+#loader p{font-family:var(--display);letter-spacing:.4em;font-weight:800;color:var(--steel);margin-top:18px;font-size:14px;text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- PROGRESS + CURSOR GLOW ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue2),var(--orange));z-index:200}
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(255,106,19,.10),transparent 60%);transform:translate(-50%,-50%);transition:opacity .3s;opacity:0}
+@media (hover:hover){#glow{opacity:1}}
+
+/* ---------- NAV ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.35s}
+header.scrolled{background:rgba(5,13,28,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:46px;height:46px}
+.brand .gear{transform-origin:50% 50%;animation:spin 14s linear infinite}
+.brand b{font-family:var(--display);font-size:26px;font-weight:900;font-style:italic;letter-spacing:.02em;line-height:.9;display:block}
+.brand small{font-family:var(--display);font-size:11px;letter-spacing:.42em;color:var(--orange);font-weight:700}
+.menu{display:flex;gap:30px;align-items:center}
+.menu a{font-size:14px;font-weight:600;color:var(--steel);position:relative;transition:.25s}
+.menu a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--orange);transition:.3s}
+.menu a:hover{color:var(--white)}
+.menu a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:15px;transition:.3s;position:relative;overflow:hidden;border:0;cursor:pointer;font-family:var(--body)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-orange{background:linear-gradient(135deg,var(--orange),#ff4d00);color:#fff;box-shadow:0 10px 30px -8px rgba(255,106,19,.6)}
+.btn-orange::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:.7s}
+.btn-orange:hover::before{transform:translateX(120%)}
+.btn-orange:hover{transform:translateY(-3px);box-shadow:0 16px 40px -8px rgba(255,106,19,.75)}
+.btn-ghost{border:1.5px solid rgba(159,178,207,.35);color:var(--white);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--blue2);background:rgba(47,123,255,.12);transform:translateY(-3px)}
+.nav .btn{padding:11px 20px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:20px;height:2px;background:var(--white);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2;
+  background:
+   radial-gradient(ellipse 70% 60% at 85% 30%,rgba(21,83,184,.45),transparent 60%),
+   radial-gradient(ellipse 50% 50% at 10% 90%,rgba(255,106,19,.18),transparent 60%),
+   linear-gradient(180deg,var(--navy) 0%,var(--ink) 100%)}
+.grid-lines{position:absolute;inset:0;z-index:-1;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;mask-image:radial-gradient(ellipse at 70% 40%,#000 20%,transparent 75%);animation:gridmove 20s linear infinite}
+@keyframes gridmove{to{background-position:60px 60px}}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border-radius:999px;background:rgba(47,123,255,.12);border:1px solid rgba(47,123,255,.35);font-size:13px;font-weight:600;color:#cfe0ff;margin-bottom:26px}
+.tag .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(255,106,19,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,106,19,0)}100%{box-shadow:0 0 0 0 rgba(255,106,19,0)}}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(56px,9vw,124px);line-height:.86;text-transform:uppercase;letter-spacing:-.01em}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:inline-block;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .line:nth-child(2) span{animation-delay:.12s}
+.hero h1 .line:nth-child(3) span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.outline{-webkit-text-stroke:2px var(--white);color:transparent}
+.grad{background:linear-gradient(90deg,var(--orange),var(--orange2));-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+.hero p.lead{font-size:clamp(16px,1.6vw,19px);color:var(--steel);max-width:520px;margin:26px 0 34px;opacity:0;animation:fade 1s .5s forwards}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade 1s .7s forwards}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero-chips{display:flex;gap:22px;margin-top:44px;flex-wrap:wrap;opacity:0;animation:fade 1s .9s forwards}
+.chip{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--steel)}
+.chip i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,106,19,.12);color:var(--orange);font-style:normal}
+.chip i svg{width:18px;height:18px}
+
+/* hero visual */
+.hero-visual{position:relative;aspect-ratio:1;max-width:520px;justify-self:center;width:100%}
+.big-gear{position:absolute;inset:0;animation:spin 30s linear infinite}
+.small-gear{position:absolute;width:38%;right:-6%;top:-4%;animation:spin 15s linear infinite reverse}
+.ring{position:absolute;inset:8%;border-radius:50%;border:1px dashed rgba(159,178,207,.25);animation:spin 60s linear infinite reverse}
+.hero-truck{position:absolute;left:50%;top:50%;width:70%;transform:translate(-50%,-50%);filter:drop-shadow(0 30px 40px rgba(0,0,0,.6));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-50%,-56%)}}
+.headlight{animation:blink 3s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
+.badge-float{position:absolute;background:rgba(13,33,66,.75);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;gap:10px;align-items:center;font-size:13px;font-weight:600;box-shadow:0 20px 40px -10px rgba(0,0,0,.5)}
+.badge-float svg{width:22px;height:22px;color:var(--orange)}
+.badge-float small{display:block;color:var(--steel);font-weight:500;font-size:11px}
+.bf1{left:-4%;bottom:14%;animation:float2 6s ease-in-out infinite}
+.bf2{right:-2%;bottom:-2%;animation:float2 7s ease-in-out infinite 1s}
+@keyframes float2{50%{transform:translateY(-14px)}}
+
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:26px;height:42px;border:2px solid rgba(159,178,207,.4);border-radius:14px}
+.scroll-hint::after{content:'';position:absolute;left:50%;top:8px;width:4px;height:8px;border-radius:2px;background:var(--orange);transform:translateX(-50%);animation:sc 1.6s infinite}
+@keyframes sc{to{transform:translate(-50%,14px);opacity:0}}
+
+/* ---------- ROAD MARQUEE ---------- */
+.road{background:var(--orange);color:var(--ink);transform:rotate(-2deg) scale(1.04);margin:-30px 0 0;position:relative;z-index:3;box-shadow:0 20px 50px -20px rgba(255,106,19,.6)}
+.road2{background:var(--blue);color:#fff;transform:rotate(1.5deg) scale(1.04);margin-top:-46px;z-index:2;box-shadow:none}
+.marquee{display:flex;overflow:hidden;padding:16px 0;white-space:nowrap}
+.marquee-track{display:flex;gap:44px;animation:marq 26s linear infinite;padding-right:44px}
+.road2 .marquee-track{animation-direction:reverse;animation-duration:32s}
+.marquee-track span{font-family:var(--display);font-weight:900;font-size:clamp(22px,3vw,34px);text-transform:uppercase;display:flex;align-items:center;gap:44px;font-style:italic}
+.marquee-track span::after{content:'';width:14px;height:14px;background:currentColor;transform:rotate(45deg)}
+@keyframes marq{to{transform:translateX(-100%)}}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative;padding:120px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);font-size:14px;margin-bottom:16px}
+.eyebrow::before{content:'';width:34px;height:2px;background:var(--orange)}
+h2{font-family:var(--display);font-weight:900;font-size:clamp(42px,6vw,76px);line-height:.92;text-transform:uppercase}
+h2 em{color:var(--blue2);font-style:italic}
+.sub{color:var(--steel);max-width:560px;margin-top:18px;font-size:17px}
+.head-row{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:60px}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* services */
+#servicos{background:linear-gradient(180deg,var(--ink),var(--navy) 60%,var(--ink))}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc{position:relative;padding:30px 26px 28px;border-radius:var(--radius);background:linear-gradient(160deg,rgba(13,33,66,.9),rgba(8,20,40,.9));border:1px solid var(--line);overflow:hidden;transition:transform .4s,border-color .4s;transform-style:preserve-3d;cursor:default}
+.svc::before{content:'';position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(255,106,19,.18),transparent 45%);opacity:0;transition:.4s}
+.svc:hover::before{opacity:1}
+.svc:hover{border-color:rgba(255,106,19,.5)}
+.svc .num{position:absolute;right:18px;top:12px;font-family:var(--display);font-weight:900;font-size:56px;color:rgba(159,178,207,.07);line-height:1}
+.svc .ico{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--blue2));margin-bottom:22px;box-shadow:0 12px 30px -10px rgba(47,123,255,.7);transition:.5s}
+.svc:hover .ico{background:linear-gradient(135deg,var(--orange),#ff4d00);box-shadow:0 12px 30px -10px rgba(255,106,19,.8);transform:rotate(-8deg) scale(1.08)}
+.svc .ico svg{width:30px;height:30px;color:#fff}
+.svc h3{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;margin-bottom:8px}
+.svc p{color:var(--steel);font-size:14.5px}
+
+/* atendimento split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.mode{position:relative;border-radius:26px;padding:46px 40px;overflow:hidden;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.mode.a{background:linear-gradient(150deg,var(--blue) 0%,#0a2b66 100%)}
+.mode.b{background:linear-gradient(150deg,var(--orange) 0%,#c43f00 100%)}
+.mode .bg-ico{position:absolute;right:-30px;top:-30px;width:280px;height:280px;opacity:.14;z-index:-1;transition:transform 1s}
+.mode:hover .bg-ico{transform:rotate(25deg) scale(1.1)}
+.mode .lbl{font-family:var(--display);letter-spacing:.3em;font-weight:800;font-size:13px;opacity:.85;margin-bottom:10px}
+.mode h3{font-family:var(--display);font-size:clamp(40px,5vw,62px);font-weight:900;line-height:.9;text-transform:uppercase;margin-bottom:16px}
+.mode p{opacity:.92;max-width:420px;margin-bottom:26px}
+.mode ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.mode li{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.16);font-size:13px;font-weight:600}
+.btn-white{background:#fff;color:var(--ink);align-self:flex-start}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 30px -10px rgba(0,0,0,.5)}
+.btn-dark{background:var(--ink);color:#fff;align-self:flex-start}
+.btn-dark:hover{transform:translateY(-3px)}
+
+/* vehicles tabs */
+#veiculos{background:var(--navy)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.tab{padding:12px 24px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--steel);font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.3s}
+.tab.active,.tab:hover{color:#fff;border-color:var(--orange);background:rgba(255,106,19,.14)}
+.stage{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:linear-gradient(160deg,rgba(21,83,184,.18),rgba(5,13,28,.5));border:1px solid var(--line);border-radius:28px;padding:40px;position:relative;overflow:hidden}
+.stage-road{position:absolute;left:0;right:0;bottom:60px;height:4px;background:repeating-linear-gradient(90deg,var(--orange) 0 40px,transparent 40px 80px);opacity:.5;animation:roadmv 1s linear infinite}
+@keyframes roadmv{to{background-position:-80px 0}}
+.vehicle-svg{width:100%;max-width:480px;justify-self:center;position:relative;z-index:1}
+.vehicle-svg svg{width:100%;height:auto;transition:opacity .35s,transform .5s}
+.vehicle-svg.swap svg{opacity:0;transform:translateX(-60px)}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin 1s linear infinite}
+.v-info h3{font-family:var(--display);font-size:48px;font-weight:900;text-transform:uppercase;line-height:.95;margin-bottom:14px}
+.v-info p{color:var(--steel);margin-bottom:20px}
+.v-info ul{list-style:none;display:grid;gap:10px}
+.v-info li{display:flex;gap:12px;align-items:center;font-weight:500}
+.v-info li::before{content:'';width:20px;height:20px;flex:none;border-radius:6px;background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;counter-reset:s}
+.steps::before{content:'';position:absolute;top:38px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,var(--blue2),var(--orange));opacity:.35}
+.step{text-align:center;position:relative;padding:0 8px}
+.step .circle{width:76px;height:76px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:var(--navy2);border:2px solid var(--blue2);position:relative;transition:.4s;font-family:var(--display);font-weight:900;font-size:30px;color:#fff}
+.step:hover .circle{background:var(--orange);border-color:var(--orange);transform:scale(1.1) rotate(10deg)}
+.step h4{font-family:var(--display);font-size:24px;text-transform:uppercase;font-weight:800;margin-bottom:6px}
+.step p{color:var(--steel);font-size:14.5px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:90px;background:rgba(13,33,66,.4)}
+.stat{padding:34px 24px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat b{font-family:var(--display);font-size:clamp(46px,5vw,64px);font-weight:900;display:block;line-height:1;background:linear-gradient(180deg,#fff,var(--steel));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat b sup{font-size:.45em;color:var(--orange);-webkit-text-fill-color:var(--orange)}
+.stat span{color:var(--steel);font-size:14px;font-weight:500}
+
+/* builder */
+#orcamento{background:radial-gradient(ellipse at 20% 0%,rgba(21,83,184,.35),transparent 60%),var(--ink)}
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.panel{background:linear-gradient(160deg,rgba(13,33,66,.85),rgba(8,20,40,.85));border:1px solid var(--line);border-radius:26px;padding:34px}
+.field{margin-bottom:24px}
+.field label{display:block;font-family:var(--display);letter-spacing:.2em;font-weight:800;font-size:13px;color:var(--steel);text-transform:uppercase;margin-bottom:12px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.04);border:1.5px solid var(--line);color:var(--white);font-size:14px;font-weight:600;cursor:pointer;transition:.25s;font-family:var(--body)}
+.opt:hover{border-color:var(--blue2)}
+.opt.on{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px)}
+.panel input,.panel textarea{width:100%;padding:14px 16px;border-radius:12px;background:rgba(0,0,0,.25);border:1.5px solid var(--line);color:#fff;font-family:var(--body);font-size:15px;outline:none;transition:.25s;resize:vertical}
+.panel input:focus,.panel textarea:focus{border-color:var(--orange)}
+.preview{background:#0b141a;border-radius:26px;padding:22px;border:1px solid var(--line);position:sticky;top:100px}
+.wa-top{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}
+.wa-top .av{width:42px;height:42px;border-radius:50%;background:var(--navy);display:grid;place-items:center}
+.wa-top .av svg{width:34px;height:34px}
+.wa-top b{display:block;font-size:15px}
+.wa-top small{color:#25d366;font-size:12px}
+.bubble{background:#005c4b;border-radius:14px 14px 4px 14px;padding:14px 16px;font-size:14.5px;white-space:pre-wrap;margin-left:auto;max-width:92%;min-height:60px;box-shadow:0 4px 14px rgba(0,0,0,.3);word-wrap:break-word}
+.bubble .t{display:block;text-align:right;font-size:11px;color:rgba(255,255,255,.6);margin-top:6px}
+.preview .btn{width:100%;justify-content:center;margin-top:20px}
+.btn-wa{background:#25d366;color:#04210f}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 30px -10px rgba(37,211,102,.7)}
+
+/* location */
+#localizacao{background:var(--navy)}
+.loc{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:stretch}
+.loc-card{background:linear-gradient(160deg,var(--blue),#0a2b66);border-radius:26px;padding:40px;display:flex;flex-direction:column;gap:26px;position:relative;overflow:hidden}
+.loc-card::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:40px solid rgba(255,255,255,.05);right:-120px;bottom:-120px}
+.info-row{display:flex;gap:16px;align-items:flex-start}
+.info-row i{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;font-style:normal}
+.info-row i svg{width:24px;height:24px}
+.info-row small{display:block;font-family:var(--display);letter-spacing:.2em;font-weight:800;font-size:12px;opacity:.75;text-transform:uppercase}
+.info-row b{font-size:18px;line-height:1.35;display:block}
+.loc-card .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;position:relative;z-index:1}
+.map-wrap{border-radius:26px;overflow:hidden;border:1px solid var(--line);min-height:440px;position:relative;background:var(--navy2)}
+.map-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(1.05)}
+.map-pin{position:absolute;left:16px;top:16px;background:var(--orange);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;font-size:13px;display:flex;gap:8px;align-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.6);z-index:2;pointer-events:none}
+.map-pin svg{width:16px;height:16px}
+
+/* final cta */
+.final{padding:0 0 120px;background:var(--navy)}
+.cta-box{position:relative;border-radius:34px;padding:80px 50px;text-align:center;overflow:hidden;isolation:isolate;background:linear-gradient(120deg,var(--orange),#ff4d00 50%,#d63c00)}
+.cta-box::before{content:'';position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(-45deg,rgba(0,0,0,.08) 0 20px,transparent 20px 40px);animation:stripes 3s linear infinite}
+@keyframes stripes{to{background-position:56px 0}}
+.cta-box h2{color:#fff;font-size:clamp(46px,7vw,96px)}
+.cta-box p{font-size:18px;max-width:520px;margin:18px auto 34px;opacity:.95}
+.cta-box .phone{font-family:var(--display);font-weight:900;font-size:clamp(34px,5vw,56px);display:block;margin-bottom:28px;letter-spacing:.02em}
+.cta-box .cg{position:absolute;width:260px;opacity:.12;z-index:-1;animation:spin 25s linear infinite}
+.cta-box .cg1{left:-80px;top:-80px}.cta-box .cg2{right:-90px;bottom:-90px;animation-direction:reverse}
+
+/* footer */
+footer{background:var(--ink);border-top:1px solid var(--line);padding:56px 0 30px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot p{color:var(--steel);font-size:14px;margin-top:16px;max-width:320px}
+.foot h5{font-family:var(--display);letter-spacing:.2em;font-size:14px;color:var(--orange);margin-bottom:16px;text-transform:uppercase}
+.foot a,.foot span{display:block;color:var(--steel);font-size:14px;margin-bottom:10px;transition:.2s}
+.foot a:hover{color:#fff}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.06);display:grid;place-items:center;border:1px solid var(--line);margin:0}
+.socials a:hover{background:var(--orange);border-color:var(--orange)}
+.socials svg{width:20px;height:20px;color:#fff}
+.copy{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(159,178,207,.7)}
+.copy b{color:var(--white);font-weight:600}
+
+/* floating wa */
+.fab{position:fixed;right:20px;bottom:20px;z-index:150;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 12px 30px -6px rgba(37,211,102,.7);transition:.3s}
+.fab::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ring 2s infinite}
+@keyframes ring{to{transform:scale(1.6);opacity:0}}
+.fab svg{width:32px;height:32px;color:#fff}
+.fab:hover{transform:scale(1.1) rotate(-8deg)}
+.fab-tip{position:absolute;right:76px;white-space:nowrap;background:#fff;color:var(--ink);padding:8px 14px;border-radius:10px;font-size:13px;font-weight:700;opacity:0;transform:translateX(10px);transition:.3s;pointer-events:none}
+.fab:hover .fab-tip{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .services{grid-template-columns:repeat(2,1fr)}
+  .hero-inner,.builder,.loc,.stage{grid-template-columns:1fr}
+  .hero-visual{max-width:400px;order:-1;margin-top:10px}
+  .preview{position:relative;top:0}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .menu{position:fixed;inset:76px 0 auto 0;flex-direction:column;background:rgba(5,13,28,.97);backdrop-filter:blur(14px);padding:30px;gap:22px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.45s cubic-bezier(.2,.8,.2,1)}
+  .menu.open{transform:none}
+  .menu a{font-size:18px}
+  .burger{display:flex}
+  .nav .btn.desk{display:none}
+  .split{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+  .steps::before{display:none}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+  section{padding:90px 0}
+  .mode{padding:36px 28px;min-height:360px}
+  .stage{padding:28px}
+  .cta-box{padding:60px 24px}
+  .hero{padding-top:100px}
+}
+@media (max-width:520px){
+  .services{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%;justify-content:center}
+  .bf1{left:0}.bf2{right:0}
+  .hero-visual{max-width:300px}
+  .badge-float{padding:9px 12px;font-size:12px}
+  .panel{padding:24px}
+  .loc-card{padding:30px 24px}
+  .map-wrap{min-height:360px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.hero h1 .line span{transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ===== SVG SYMBOLS ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.9 9.88zm8.42-18.3A11.81 11.81 0 0 0 12.04 0C5.48 0 .13 5.34.13 11.9c0 2.1.55 4.14 1.59 5.95L.03 24l6.3-1.65a11.88 11.88 0 0 0 5.71 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.49-8.42z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s-7-6.1-7-12a7 7 0 0 1 14 0c0 5.9-7 12-7 12z"/><circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M5 11h3l2-3 3 6 2-3h4"/></g></symbol>
+    <symbol id="i-tow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17V9h7l3 4h4v4"/><path d="M16 13l5-7"/><path d="M21 6v4"/><circle cx="6" cy="18" r="2"/><circle cx="15" cy="18" r="2"/></g></symbol>
+    <symbol id="i-shop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-8h10v8M7 17h10"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></g></symbol>
+    <!-- gear path (original) -->
+    <symbol id="gear" viewBox="0 0 200 200"><path fill="currentColor" d="M113 8l5 22a72 72 0 0 1 17 7l19-12 18 18-12 19a72 72 0 0 1 7 17l22 5v26l-22 5a72 72 0 0 1-7 17l12 19-18 18-19-12a72 72 0 0 1-17 7l-5 22H87l-5-22a72 72 0 0 1-17-7l-19 12-18-18 12-19a72 72 0 0 1-7-17L11 113V87l22-5a72 72 0 0 1 7-17L28 46l18-18 19 12a72 72 0 0 1 17-7l5-22zM100 52a48 48 0 1 0 0 96 48 48 0 0 0 0-96z"/></symbol>
+    <!-- brand mark -->
+    <symbol id="mark" viewBox="0 0 100 100">
+      <g class="gear" style="transform-origin:50px 50px"><use href="#gear" x="0" y="0" width="100" height="100" style="color:#ff6a13"/></g>
+      <circle cx="50" cy="50" r="22" fill="#1553b8"/>
+      <path d="M42 63V37h11a9 9 0 0 1 0 18h-5v8z M48 43v6h5a3 3 0 0 0 0-6z" fill="#fff" fill-rule="evenodd"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="loader"><div><svg class="gear-load" style="color:var(--orange)"><use href="#gear"/></svg><p>POSSOBOM</p></div></div>
+<div id="progress"></div>
+<div id="glow"></div>
+
+<!-- ===== HEADER ===== -->
+<header id="top">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="Possobom Mecânica Diesel">
+      <svg viewBox="0 0 100 100"><use href="#mark"/></svg>
+      <div><b>POSSOBOM</b><small>MECÂNICA DIESEL</small></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#atendimento">Atendimento</a>
+      <a href="#veiculos">Veículos</a>
+      <a href="#orcamento">Orçamento</a>
+      <a href="#localizacao">Localização</a>
+    </nav>
+    <a class="btn btn-orange desk" href="https://wa.me/5548996472068" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="container hero-inner">
+    <div>
+      <div class="tag"><span class="dot"></span>Serraria · São José/SC</div>
+      <h1>
+        <span class="line"><span>Seu caminhão</span></span>
+        <span class="line"><span class="outline">não pode</span></span>
+        <span class="line"><span class="grad">parar.</span></span>
+      </h1>
+      <p class="lead">Mecânica diesel especializada em <strong style="color:#fff">caminhões, vans e utilitários</strong>. Do diagnóstico com scanner ao reparo completo — na nossa oficina ou onde o seu veículo estiver.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-orange" href="https://wa.me/5548996472068?text=Ol%C3%A1%2C%20Possobom!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Solicitar orçamento</a>
+        <a class="btn btn-ghost" href="#localizacao"><svg><use href="#i-pin"/></svg>Como chegar</a>
+      </div>
+      <div class="hero-chips">
+        <div class="chip"><i><svg><use href="#i-scan"/></svg></i>Diagnóstico com scanner</div>
+        <div class="chip"><i><svg><use href="#i-tow"/></svg></i>Atendimento no local</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="ring"></div>
+      <svg class="big-gear" style="color:rgba(21,83,184,.35)"><use href="#gear"/></svg>
+      <svg class="small-gear" style="color:rgba(255,106,19,.55)"><use href="#gear"/></svg>
+      <!-- truck front (original illustration) -->
+      <svg class="hero-truck" viewBox="0 0 300 300" aria-hidden="true">
+        <defs>
+          <linearGradient id="cab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#0b2a63"/></linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fd0ff" stop-opacity=".9"/><stop offset="1" stop-color="#0d2142" stop-opacity=".95"/></linearGradient>
+          <radialGradient id="hl"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#ffd2b0"/><stop offset="1" stop-color="#ff6a13" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="150" cy="276" rx="120" ry="12" fill="#000" opacity=".45"/>
+        <rect x="58" y="34" width="184" height="210" rx="22" fill="url(#cab)"/>
+        <rect x="58" y="34" width="184" height="30" rx="14" fill="#0b2a63"/>
+        <rect x="100" y="40" width="100" height="10" rx="5" fill="#ff6a13"/>
+        <path d="M74 74h152l-8 64H82z" fill="url(#glass)"/>
+        <path d="M90 80l40 0-30 50h-12z" fill="#fff" opacity=".18"/>
+        <rect x="66" y="146" width="168" height="14" rx="4" fill="#0b2a63"/>
+        <!-- grille -->
+        <rect x="102" y="166" width="96" height="54" rx="8" fill="#081428"/>
+        <g fill="#2f7bff" opacity=".8"><rect x="110" y="174" width="80" height="5" rx="2"/><rect x="110" y="184" width="80" height="5" rx="2"/><rect x="110" y="194" width="80" height="5" rx="2"/><rect x="110" y="204" width="80" height="5" rx="2"/></g>
+        <circle cx="150" cy="192" r="13" fill="#ff6a13"/><text x="150" y="198" font-family="Arial Black,Arial" font-weight="900" font-size="16" text-anchor="middle" fill="#fff">P</text>
+        <!-- headlights -->
+        <g class="headlight"><rect x="68" y="172" width="28" height="18" rx="6" fill="#fff"/><circle cx="82" cy="181" r="34" fill="url(#hl)" opacity=".55"/>
+        <rect x="204" y="172" width="28" height="18" rx="6" fill="#fff"/><circle cx="218" cy="181" r="34" fill="url(#hl)" opacity=".55"/></g>
+        <rect x="68" y="196" width="28" height="5" rx="2" fill="#ff6a13"/><rect x="204" y="196" width="28" height="5" rx="2" fill="#ff6a13"/>
+        <!-- bumper -->
+        <rect x="52" y="226" width="196" height="22" rx="6" fill="#0d2142"/>
+        <rect x="120" y="231" width="60" height="12" rx="3" fill="#f4f7fc"/><text x="150" y="240.5" font-family="Arial" font-weight="700" font-size="8" text-anchor="middle" fill="#081428">POS-50B0</text>
+        <!-- wheels -->
+        <rect x="66" y="246" width="34" height="28" rx="6" fill="#050d1c"/><rect x="200" y="246" width="34" height="28" rx="6" fill="#050d1c"/>
+        <!-- mirrors -->
+        <rect x="34" y="78" width="16" height="44" rx="5" fill="#0b2a63"/><path d="M50 92h10" stroke="#0b2a63" stroke-width="5"/>
+        <rect x="250" y="78" width="16" height="44" rx="5" fill="#0b2a63"/><path d="M240 92h10" stroke="#0b2a63" stroke-width="5"/>
+      </svg>
+      <div class="badge-float bf1"><svg><use href="#i-shield"/></svg><div>Preventiva<small>e corretiva</small></div></div>
+      <div class="badge-float bf2"><svg><use href="#i-scan"/></svg><div>Scanner<small>diagnóstico preciso</small></div></div>
+    </div>
+  </div>
+  <a href="#servicos" class="scroll-hint" aria-label="Rolar"></a>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="road"><div class="marquee"><div class="marquee-track" aria-hidden="true">
+  <span>Motor</span><span>Câmbio</span><span>Embreagem</span><span>Diferencial</span><span>Freios</span><span>Suspensão</span><span>Troca de óleo</span><span>Scanner</span>
+</div><div class="marquee-track" aria-hidden="true">
+  <span>Motor</span><span>Câmbio</span><span>Embreagem</span><span>Diferencial</span><span>Freios</span><span>Suspensão</span><span>Troca de óleo</span><span>Scanner</span>
+</div></div></div>
+<div class="road road2"><div class="marquee"><div class="marquee-track" aria-hidden="true">
+  <span>Caminhões</span><span>Vans</span><span>Utilitários</span><span>Socorro mecânico</span><span>Oficina</span><span>Atendimento no local</span>
+</div><div class="marquee-track" aria-hidden="true">
+  <span>Caminhões</span><span>Vans</span><span>Utilitários</span><span>Socorro mecânico</span><span>Oficina</span><span>Atendimento no local</span>
+</div></div></div>
+
+<!-- ===== SERVIÇOS ===== -->
+<section id="servicos">
+  <div class="container">
+    <div class="head-row">
+      <div class="reveal">
+        <div class="eyebrow">O que fazemos</div>
+        <h2>Mecânica diesel<br><em>completa</em></h2>
+      </div>
+      <p class="sub reveal d1">Manutenção e reparo de todos os sistemas do seu veículo pesado ou utilitário, com a agilidade de quem sabe que veículo parado é prejuízo.</p>
+    </div>
+    <div class="services" id="services"></div>
+  </div>
+</section>
+
+<!-- ===== ATENDIMENTO ===== -->
+<section id="atendimento" style="padding-top:40px">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:50px">
+      <div class="eyebrow">Como atendemos</div>
+      <h2>Na oficina <em>ou</em><br>onde você estiver</h2>
+    </div>
+    <div class="split">
+      <div class="mode a reveal d1">
+        <svg class="bg-ico"><use href="#i-shop"/></svg>
+        <div class="lbl">01 — OFICINA</div>
+        <h3>Atendimento<br>na oficina</h3>
+        <p>Estrutura própria no bairro Serraria, em São José, preparada para receber caminhões, vans e utilitários.</p>
+        <ul><li>Diagnóstico</li><li>Revisão</li><li>Reparo completo</li></ul>
+        <a class="btn btn-white" href="#localizacao"><svg><use href="#i-pin"/></svg>Ver no mapa</a>
+      </div>
+      <div class="mode b reveal d2">
+        <svg class="bg-ico"><use href="#i-tow"/></svg>
+        <div class="lbl">02 — SOCORRO</div>
+        <h3>Atendimento<br>no local</h3>
+        <p>Levamos o serviço até a sua empresa ou até onde o veículo parou — uma forma prática de reduzir o tempo de veículo parado.</p>
+        <ul><li>Socorro mecânico</li><li>Frotas</li><li>Empresas</li></ul>
+        <a class="btn btn-dark" href="https://wa.me/5548996472068?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20no%20local%20(socorro)." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Chamar socorro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VEÍCULOS ===== -->
+<section id="veiculos">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px">
+      <div class="eyebrow">Quem atendemos</div>
+      <h2>Feito para quem<br><em>vive na estrada</em></h2>
+    </div>
+    <div class="tabs reveal d1" id="tabs">
+      <button class="tab active" data-v="0">Caminhões</button>
+      <button class="tab" data-v="1">Vans</button>
+      <button class="tab" data-v="2">Utilitários</button>
+    </div>
+    <div class="stage reveal d2">
+      <div class="stage-road"></div>
+      <div class="v-info" id="vInfo"></div>
+      <div class="vehicle-svg" id="vSvg"></div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><b data-count="8">0</b><span>Especialidades</span></div>
+      <div class="stat"><b data-count="3">0</b><span>Tipos de veículo</span></div>
+      <div class="stat"><b data-count="2">0</b><span>Modos de atendimento</span></div>
+      <div class="stat"><b data-count="2023">0</b><span>Desde</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESSO ===== -->
+<section id="processo">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:70px">
+      <div class="eyebrow">Passo a passo</div>
+      <h2>Do problema à <em>estrada</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="circle">1</div><h4>Contato</h4><p>Chame no WhatsApp e conte o que está acontecendo com o veículo.</p></div>
+      <div class="step reveal d1"><div class="circle">2</div><h4>Diagnóstico</h4><p>Avaliação com scanner para identificar a falha com precisão.</p></div>
+      <div class="step reveal d2"><div class="circle">3</div><h4>Orçamento</h4><p>Você recebe o orçamento e aprova antes de qualquer serviço.</p></div>
+      <div class="step reveal d3"><div class="circle">4</div><h4>De volta</h4><p>Reparo feito, veículo testado e pronto para rodar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORÇAMENTO BUILDER ===== -->
+<section id="orcamento">
+  <div class="container">
+    <div class="head-row">
+      <div class="reveal">
+        <div class="eyebrow">Orçamento rápido</div>
+        <h2>Monte sua<br><em>mensagem</em></h2>
+      </div>
+      <p class="sub reveal d1">Escolha as opções e a mensagem já chega pronta no WhatsApp da oficina. Leva menos de 30 segundos.</p>
+    </div>
+    <div class="builder">
+      <div class="panel reveal">
+        <div class="field"><label>Tipo de veículo</label><div class="opts" data-group="veiculo" data-single="1">
+          <button class="opt on">Caminhão</button><button class="opt">Van</button><button class="opt">Utilitário</button>
+        </div></div>
+        <div class="field"><label>Serviço (pode marcar vários)</label><div class="opts" data-group="servico">
+          <button class="opt">Motor</button><button class="opt">Câmbio</button><button class="opt">Embreagem</button><button class="opt">Diferencial</button><button class="opt">Freios</button><button class="opt">Suspensão</button><button class="opt">Troca de óleo</button><button class="opt">Diagnóstico com scanner</button><button class="opt">Revisão preventiva</button>
+        </div></div>
+        <div class="field"><label>Onde atender</label><div class="opts" data-group="local" data-single="1">
+          <button class="opt on">Na oficina</button><button class="opt">No local / socorro</button>
+        </div></div>
+        <div class="field"><label for="nome">Seu nome</label><input id="nome" placeholder="Ex.: João" autocomplete="name"></div>
+        <div class="field" style="margin:0"><label for="obs">Modelo / o que está acontecendo</label><textarea id="obs" rows="3" placeholder="Ex.: VW 24.280, barulho na embreagem ao trocar marcha"></textarea></div>
+      </div>
+      <div class="preview reveal d1">
+        <div class="wa-top"><div class="av"><svg viewBox="0 0 100 100"><use href="#mark"/></svg></div><div><b>Possobom Mecânica Diesel</b><small>● online no WhatsApp</small></div></div>
+        <div class="bubble" id="bubble"></div>
+        <a class="btn btn-wa" id="sendWa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Enviar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCALIZAÇÃO ===== -->
+<section id="localizacao">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:50px">
+      <div class="eyebrow">Onde estamos</div>
+      <h2>Venha até a<br><em>oficina</em></h2>
+    </div>
+    <div class="loc">
+      <div class="loc-card reveal">
+        <div class="info-row"><i><svg><use href="#i-pin"/></svg></i><div><small>Endereço</small><b>Rua Maria Oliveira, 350<br>Serraria — São José/SC<br>CEP 88115-163</b></div></div>
+        <div class="info-row"><i><svg><use href="#i-wa"/></svg></i><div><small>WhatsApp</small><b><a href="https://wa.me/5548996472068" target="_blank" rel="noopener">(48) 99647-2068</a></b></div></div>
+        <div class="info-row"><i><svg><use href="#i-ig"/></svg></i><div><small>Instagram</small><b><a href="https://www.instagram.com/possobom_mecanica_diesel/" target="_blank" rel="noopener">@possobom_mecanica_diesel</a></b></div></div>
+        <div class="info-row"><i><svg><use href="#i-clock"/></svg></i><div><small>Horários</small><b>Consulte pelo WhatsApp</b></div></div>
+        <div class="btns">
+          <a class="btn btn-orange" href="https://www.google.com/maps/dir/?api=1&destination=Rua+Maria+Oliveira,+350,+Serraria,+S%C3%A3o+Jos%C3%A9+-+SC,+88115-163" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Traçar rota</a>
+          <a class="btn btn-white" href="https://waze.com/ul?q=Rua%20Maria%20Oliveira%20350%20S%C3%A3o%20Jos%C3%A9%20SC&navigate=yes" target="_blank" rel="noopener">Waze</a>
+        </div>
+      </div>
+      <div class="map-wrap reveal d1">
+        <div class="map-pin"><svg><use href="#i-pin"/></svg>Possobom Mecânica Diesel</div>
+        <iframe title="Mapa Possobom Mecânica Diesel" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Rua%20Maria%20Oliveira%2C%20350%20-%20Serraria%2C%20S%C3%A3o%20Jos%C3%A9%20-%20SC%2C%2088115-163&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<div class="final">
+  <div class="container">
+    <div class="cta-box reveal">
+      <svg class="cg cg1" style="color:#fff"><use href="#gear"/></svg>
+      <svg class="cg cg2" style="color:#fff"><use href="#gear"/></svg>
+      <h2>Veículo parado<br>é prejuízo.</h2>
+      <p>Fale agora com a Possobom e coloque seu caminhão, van ou utilitário de volta ao trabalho.</p>
+      <a class="phone" href="https://wa.me/5548996472068" target="_blank" rel="noopener">(48) 99647-2068</a>
+      <a class="btn btn-dark" href="https://wa.me/5548996472068?text=Ol%C3%A1%2C%20Possobom!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a href="#" class="brand"><svg viewBox="0 0 100 100"><use href="#mark"/></svg><div><b>POSSOBOM</b><small>MECÂNICA DIESEL</small></div></a>
+        <p>Mecânica diesel para caminhões, vans e utilitários. Manutenção e diagnóstico especializado em São José/SC.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/possobom_mecanica_diesel/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+          <a href="https://wa.me/5548996472068" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Navegação</h5>
+        <a href="#servicos">Serviços</a><a href="#atendimento">Atendimento</a><a href="#veiculos">Veículos</a><a href="#orcamento">Orçamento</a><a href="#localizacao">Localização</a>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <a href="https://wa.me/5548996472068" target="_blank" rel="noopener">(48) 99647-2068</a>
+        <span>Rua Maria Oliveira, 350</span>
+        <span>Serraria — São José/SC</span>
+        <span>CEP 88115-163</span>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="yr"></span> Possobom Mecânica Diesel Ltda. Todos os direitos reservados.</span>
+      <span>Desenvolvido por <b>Dani Mendonça Freitas</b></span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/5548996472068?text=Ol%C3%A1%2C%20Possobom!" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="fab-tip">Fale com a gente!</span><svg><use href="#i-wa"/></svg></a>
+
+<script>
+const WA = '5548996472068';
+
+/* loader */
+addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hide'),500));
+setTimeout(()=>document.getElementById('loader').classList.add('hide'),2500);
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* services data */
+const ICON = {
+  motor:'<path d="M3 10v6h2v-2h2l2 3h7l2-3h1v2h2v-8h-2v2h-1l-2-3h-3V5h3V3H8v2h3v2H8L6 10z"/>',
+  cambio:'<circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><path d="M5 7v12M12 7v12M19 7v5H5"/>',
+  embreagem:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/>',
+  diferencial:'<circle cx="4" cy="12" r="2.5"/><circle cx="20" cy="12" r="2.5"/><circle cx="12" cy="12" r="4"/><path d="M6.5 12H8M16 12h1.5"/>',
+  freios:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M19 7a9 9 0 0 1 0 10" stroke-width="4"/>',
+  suspensao:'<path d="M12 2v3M12 19v3"/><path d="M8 5h8l-8 3h8l-8 3h8l-8 3h8l-8 3h8"/>',
+  oleo:'<path d="M3 13h10l4-4 4 2-6 6H5z"/><path d="M3 13l-1-3h5l2 3"/><path d="M20 15c0 1.5-1 2.5-1 2.5s-1-1-1-2.5 1-2.5 1-2.5 1 1 1 2.5z"/>',
+  scanner:'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M5 11h3l2-3 3 6 2-3h4"/>'
+};
+const SVCS = [
+  ['motor','Motor','Manutenção geral de motores diesel, sistemas e componentes.'],
+  ['cambio','Câmbio','Reparo e revisão de caixas de câmbio para linha pesada e utilitários.'],
+  ['embreagem','Embreagem','Troca e regulagem do conjunto de embreagem.'],
+  ['diferencial','Diferencial','Manutenção do diferencial e da transmissão final.'],
+  ['freios','Freios','Revisão e reparo do sistema de freios, com segurança em primeiro lugar.'],
+  ['suspensao','Suspensão','Molas, amortecedores e componentes da suspensão.'],
+  ['oleo','Troca de óleo','Troca de óleo e filtros no prazo certo para proteger o motor.'],
+  ['scanner','Diagnóstico','Diagnóstico computadorizado com scanner para encontrar a falha com precisão.']
+];
+document.getElementById('services').innerHTML = SVCS.map((s,i)=>`
+  <article class="svc reveal d${i%4+1}">
+    <span class="num">0${i+1}</span>
+    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[s[0]]}</svg></div>
+    <h3>${s[1]}</h3><p>${s[2]}</p>
+  </article>`).join('');
+
+/* tilt + spotlight on cards */
+document.querySelectorAll('.svc').forEach(c=>{
+  c.addEventListener('pointermove',e=>{
+    const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+    if(matchMedia('(hover:hover)').matches)
+      c.style.transform=`perspective(800px) rotateY(${(x/r.width-.5)*10}deg) rotateX(${-(y/r.height-.5)*10}deg) translateY(-6px)`;
+  });
+  c.addEventListener('pointerleave',()=>c.style.transform='');
+});
+
+/* vehicles */
+const wheel=(cx,cy,r=20)=>`<g class="wheel"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#050d1c"/><circle cx="${cx}" cy="${cy}" r="${r*.55}" fill="#9fb2cf"/><circle cx="${cx}" cy="${cy}" r="${r*.2}" fill="#050d1c"/><rect x="${cx-1.5}" y="${cy-r*.55}" width="3" height="${r*1.1}" fill="#050d1c"/></g>`;
+const VEH = [
+  {t:'Caminhões',p:'Leves, médios e pesados. Do caminhão de entrega ao cavalo mecânico, cuidamos de quem move a economia.',l:['Mecânica diesel em geral','Câmbio, diferencial e embreagem','Freios e suspensão pesada'],
+   svg:`<svg viewBox="0 0 480 220"><rect x="10" y="40" width="270" height="130" rx="8" fill="#e8eef8"/><rect x="10" y="40" width="270" height="18" fill="#1553b8"/><text x="145" y="120" font-family="Barlow Condensed,Arial" font-weight="900" font-size="38" text-anchor="middle" fill="#081428" font-style="italic">POSSOBOM</text><rect x="20" y="132" width="250" height="6" fill="#ff6a13"/><path d="M290 70h90l50 50v50H290z" fill="#1553b8"/><path d="M305 82h68l36 38h-104z" fill="#9fd0ff" opacity=".85"/><rect x="290" y="150" width="140" height="20" fill="#0b2a63"/><rect x="420" y="140" width="16" height="12" rx="3" fill="#ffd2b0"/><rect x="5" y="168" width="430" height="10" fill="#081428"/>${wheel(70,180)}${wheel(120,180)}${wheel(370,180)}</svg>`},
+  {t:'Vans',p:'Vans de passageiros e de carga que não podem ficar paradas: transporte escolar, turismo, entregas e frotas.',l:['Revisão preventiva','Diagnóstico com scanner','Troca de óleo e filtros'],
+   svg:`<svg viewBox="0 0 480 220"><path d="M30 60q0-20 20-20h260q30 0 60 30l60 60q20 10 20 30v20H30z" fill="#e8eef8"/><path d="M325 52q20 2 40 22l40 40h-80z" fill="#9fd0ff" opacity=".85"/><g fill="#9fd0ff" opacity=".85"><rect x="60" y="62" width="60" height="44" rx="6"/><rect x="135" y="62" width="60" height="44" rx="6"/><rect x="210" y="62" width="60" height="44" rx="6"/></g><rect x="30" y="120" width="440" height="8" fill="#ff6a13"/><rect x="30" y="128" width="440" height="6" fill="#1553b8"/><rect x="452" y="140" width="16" height="12" rx="3" fill="#ffd2b0"/><rect x="25" y="168" width="450" height="12" rx="4" fill="#081428"/>${wheel(110,180)}${wheel(380,180)}</svg>`},
+  {t:'Utilitários',p:'Picapes e utilitários de trabalho que rodam pesado no dia a dia, na cidade e na estrada.',l:['Motor e sistemas','Freios e suspensão','Atendimento no local'],
+   svg:`<svg viewBox="0 0 480 220"><path d="M200 70h120l50 50h70q20 0 20 20v30H40v-50h160z" fill="#1553b8"/><path d="M215 82h96l38 38H215z" fill="#9fd0ff" opacity=".85"/><rect x="40" y="110" width="160" height="10" fill="#0b2a63"/><rect x="40" y="140" width="420" height="6" fill="#ff6a13"/><rect x="442" y="128" width="16" height="10" rx="3" fill="#ffd2b0"/><rect x="35" y="168" width="430" height="12" rx="4" fill="#081428"/>${wheel(110,180,22)}${wheel(385,180,22)}</svg>`}
+];
+const vInfo=document.getElementById('vInfo'),vSvg=document.getElementById('vSvg');
+function showV(i){
+  vSvg.classList.add('swap');
+  setTimeout(()=>{
+    const v=VEH[i];
+    vInfo.innerHTML=`<h3>${v.t}</h3><p>${v.p}</p><ul>${v.l.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    vSvg.innerHTML=v.svg;
+    requestAnimationFrame(()=>vSvg.classList.remove('swap'));
+  },250);
+}
+showV(0);
+let vIdx=0,vTimer;
+const tabs=[...document.querySelectorAll('.tab')];
+function setTab(i){tabs.forEach(t=>t.classList.toggle('active',+t.dataset.v===i));vIdx=i;showV(i)}
+tabs.forEach(t=>t.onclick=()=>{setTab(+t.dataset.v);clearInterval(vTimer)});
+vTimer=setInterval(()=>setTab((vIdx+1)%3),5000);
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* counters */
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,end=+el.dataset.count,start=end>100?end-60:0,t0=performance.now(),d=1600;
+  (function f(t){const p=Math.min((t-t0)/d,1),v=Math.round(start+(end-start)*(1-Math.pow(1-p,3)));el.textContent=v;if(p<1)requestAnimationFrame(f)})(t0);
+  co.unobserve(el);
+}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+
+/* header, progress, parallax */
+const header=document.getElementById('top'),prog=document.getElementById('progress'),hv=document.getElementById('heroVisual');
+addEventListener('scroll',()=>{
+  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  header.classList.toggle('scrolled',y>30);
+  prog.style.width=(y/h*100)+'%';
+  if(y<innerHeight) hv.style.transform=`translateY(${y*.18}px)`;
+},{passive:true});
+
+/* cursor glow */
+const glow=document.getElementById('glow');
+addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+
+/* mobile menu */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{burger.classList.remove('open');menu.classList.remove('open')});
+
+/* message builder */
+const bubble=document.getElementById('bubble'),send=document.getElementById('sendWa');
+document.querySelectorAll('.opts').forEach(g=>{
+  g.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(g.dataset.single){g.querySelectorAll('.opt').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+    else b.classList.toggle('on');
+    build();
+  });
+});
+['nome','obs'].forEach(id=>document.getElementById(id).addEventListener('input',build));
+function sel(gr){return [...document.querySelectorAll(`[data-group="${gr}"] .opt.on`)].map(b=>b.textContent)}
+function build(){
+  const nome=document.getElementById('nome').value.trim(),obs=document.getElementById('obs').value.trim();
+  const v=sel('veiculo')[0]||'veículo',s=sel('servico'),l=sel('local')[0];
+  let msg=`Olá, Possobom! 👋${nome?`\nMeu nome é ${nome}.`:''}\nGostaria de um orçamento para ${v.toLowerCase()==='van'?'uma van':v.toLowerCase()==='utilitário'?'um utilitário':'um caminhão'}.`;
+  if(s.length) msg+=`\n🔧 Serviço: ${s.join(', ')}`;
+  msg+=`\n📍 Atendimento: ${l}`;
+  if(obs) msg+=`\n📝 ${obs}`;
+  const now=new Date();
+  bubble.innerHTML='';bubble.textContent=msg;
+  const t=document.createElement('span');t.className='t';t.textContent=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+' ✓✓';bubble.appendChild(t);
+  send.href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+}
+build();
+</script>
+</body>
+</html>
